@@ -1,0 +1,24 @@
+# SpeedSeg.m   % is the main program body;
+#
+# Action Button
+  # is to call 'SegmentFn.m' to calculate the Segment Structure - return 'LineFnl' - store the start and end pnt squence, & 'FnlMtx' - store all pnt data with speed and curvature information;
+                # First to call the 'SS_GetSpeed.m',with 'PntMtx(InputMtx)', to get the enlarged matrix -'AugSpeedMtx'- with time, speed information storeed with pnt location;
+                # then call the 'SS_GetCurvature.m', with 'AugSpeedMtx', to get the enlarged matrix -'FnlMtx'- with curvature and fitting type information;
+                                 # us the 'AugSpeedMtx' to define the first and last 5 points, fit the curvature with linear with function 'SS_GetCoePoly1.m', then for the points in between, use 'SS_GetK.m' to get the Curvature value of each pnts;
+                                                                                                                                                                                                    # Compare the pre 5 points, and post 5 points, with a fit of linear and curvature, to compare the fitting quality; 
+                # Then call 'SS_GetSegmentPnt.m', with 'FnlMtx' to get the 'MarkMtx', which link the sequence of each data points and the information of if it is a segment point, what kind of fail it has, speed / curvature;
+                             # use 'SS_GetSpeedFail.m' and 'GetCurFail.m' to get the speed fail and curvature fail points, and then use 'SS_JudgeSpeedFail' and 'SS_JudgeCurFail' to see the points is really catagory as a segment point ot nor;
+                # Then call 'SS_SegmentPostProcess.m' with 'MarkMtx' and 'FnlMtx' to get the 'LineIni' 3D matrix, with the start, end ponit;
+                             # use 'SegmentSE.m' to define each segment's startpoints and end point, to minimize the segment points number without decresing the segment number;
+                # Then call 'SS_LinePostPorcess.m' to get the processed matrix 'LineFnl', with to be fitted curve sequence, curve fitting type, and coeeficicences of each fitting type;
+                             # use 'SS_LinePostProcess.m' to determin the circular fit for circle, with theta and radius and center points;
+                
+  # also to call  'PlotFn.m' to plot each curve, base on the file 'LineFnl' and 'FnlMtx'
+                   # To get each line's different curves, and find it's fitting type, to fit the curve.
+#
+#
+#
+#
+#
+#
+#
